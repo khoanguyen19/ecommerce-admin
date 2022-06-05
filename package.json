@@ -2,7 +2,7 @@
   "name": "ecommerce-admin",
   "version": "0.1.0",
   "private": true,
-  "home": ".",
+  "homepage": "https://roaring-kitten-382811.netlify.app",
   "type": "commonjs",
   "dependencies": {
     "@emotion/react": "^11.9.0",
