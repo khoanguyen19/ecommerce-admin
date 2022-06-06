@@ -9,16 +9,15 @@ import Product from "./pages/Product";
 import NewProduct from "./pages/NewProduct";
 import Login from "./pages/Login";
 import Layout from "./pages/Layout";
-import { currentUser } from "./requestMethods";
+// import { currentUser } from "./requestMethods";
 
 const App = () => {
-  const adminCheck = currentUser !== null && currentUser.isAdmin;
+  // const adminCheck = currentUser !== null && currentUser.isAdmin;
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        {adminCheck && (
+        {/* {adminCheck && (
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<UserList />} />
@@ -28,7 +27,17 @@ const App = () => {
             <Route path="/products/:productId" element={<Product />} />
             <Route path="/newProduct" element={<NewProduct />} />
           </Route>
-        )}
+        )} */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<UserList />} />
+          <Route path="/users/:userId" element={<User />} />
+          <Route path="/newUser" element={<NewUser />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:productId" element={<Product />} />
+          <Route path="/newProduct" element={<NewProduct />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
