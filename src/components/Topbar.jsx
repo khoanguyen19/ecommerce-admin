@@ -77,7 +77,28 @@ const Avatar = styled.img`
   }
 `;
 
+const Button = styled.button`
+  padding: 10px 20px;
+  background: none;
+  outline: none;
+  border: 1px solid #777;
+  border-radius: 5px;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+`;
+
 const Topbar = () => {
+  const admin = JSON.parse(
+    JSON.parse(localStorage.getItem("persist:root")).user
+  )?.currentUser;
+
+  console.log(admin);
+
   return (
     <Container>
       <Wrapper>
@@ -98,7 +119,18 @@ const Topbar = () => {
           <IconWrapper>
             <SettingsIcon />
           </IconWrapper>
-          <Avatar src="https://scontent.fhan4-2.fna.fbcdn.net/v/t1.6435-1/119217379_3295572814001063_7282101331774432594_n.jpg?stp=dst-jpg_p200x200&_nc_cat=111&ccb=1-6&_nc_sid=7206a8&_nc_ohc=2qU3CgC4ksYAX82I97F&tn=K8d5c1BpoCEyc0Fm&_nc_ht=scontent.fhan4-2.fna&oh=00_AT_TcbS7vaCc-tc82IpCmkmitbNqxqvUlTVCPetmwtgSsg&oe=629F9EB8" />
+          {admin ? (
+            <Avatar
+              src={
+                admin.img ||
+                "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
+              }
+            />
+          ) : (
+            <Button>
+              <Link to="/login">LOG IN</Link>
+            </Button>
+          )}
         </Right>
       </Wrapper>
     </Container>
