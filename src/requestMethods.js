@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://bean-ecommerce-shop.herokuapp.com/api/";
+const BASE_URL = "https://bean-ecommerce-shop.herokuapp.com/api/";
 
 const PERSIST_ROOT = JSON.parse(localStorage.getItem("persist:root"));
 
