@@ -67,9 +67,10 @@ const Button = styled.button`
 `;
 
 const Login = () => {
-  const checkAdmin = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).user
-  ).currentUser.isAdmin;
+  const checkAdmin =
+    JSON.parse(localStorage.getItem("persist:root")) &&
+    JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user)
+      .currentUser.isAdmin;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
