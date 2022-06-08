@@ -98,6 +98,9 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button onClick={handleClick}>Login</Button>
+        <span style={{ marginTop: "20px" }}>
+          *Username: admin | Password: 123456
+        </span>
       </LoginWrapper>
     </Container>
   );
