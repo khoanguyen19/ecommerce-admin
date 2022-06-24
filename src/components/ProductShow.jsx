@@ -122,7 +122,7 @@ const ProductShow = () => {
           </InfoItem>
           <InfoItem>
             <Key>sales:</Key>
-            <Value>2341</Value>
+            <Value>{product.sales}</Value>
           </InfoItem>
           <InfoItem>
             <Key>in stock:</Key>

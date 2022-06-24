@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import LanguageIcon from "@mui/icons-material/Language";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Link } from "react-router-dom";
+import { persistor } from "../redux/store";
 
 const Container = styled.div`
   width: 100%;
@@ -93,11 +94,15 @@ const Button = styled.button`
 `;
 
 const Topbar = () => {
-  const admin = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).user
-  )?.currentUser;
+  const [admin, setAdmin] = useState(null);
 
-  console.log(admin);
+  useEffect(() => {
+    JSON.parse(localStorage.getItem("persist:root")) &&
+      setAdmin(
+        JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+          ?.currentUser
+      );
+  }, []);
 
   return (
     <Container>
@@ -119,6 +124,14 @@ const Topbar = () => {
           <IconWrapper>
             <SettingsIcon />
           </IconWrapper>
+          <Button
+            onClick={() => {
+              persistor.purge();
+              setAdmin(null);
+            }}
+          >
+            Log out
+          </Button>
           {admin ? (
             <Avatar
               src={

@@ -5,7 +5,7 @@ const BASE_URL = "https://bean-ecommerce-shop.herokuapp.com/api/";
 const PERSIST_ROOT = JSON.parse(localStorage.getItem("persist:root"));
 
 export const currentUser =
-  PERSIST_ROOT && JSON.parse(PERSIST_ROOT.user).currentUser;
+  PERSIST_ROOT && JSON.parse(PERSIST_ROOT?.user)?.currentUser;
 
 const TOKEN = currentUser !== null && currentUser.accessToken;
 

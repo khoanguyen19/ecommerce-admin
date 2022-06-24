@@ -34,6 +34,7 @@ export const login = async (dispatch, user) => {
   try {
     const res = await publicRequest.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
+    console.log(res.data);
   } catch (error) {
     dispatch(loginFailure());
   }
@@ -75,6 +76,7 @@ export const addProducts = async (product, dispatch) => {
   try {
     const res = await userRequest.post("/product", product);
     dispatch(addProductSuccess(res.data));
+    return res.data;
   } catch (error) {
     dispatch(addProductFailure());
   }

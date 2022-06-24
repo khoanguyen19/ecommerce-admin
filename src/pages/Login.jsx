@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { login } from "../redux/callApis";
+import { getUsers, login } from "../redux/callApis";
 import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -67,24 +68,31 @@ const Button = styled.button`
 `;
 
 const Login = () => {
-  const checkAdmin = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).user
-  )?.currentUser?.isAdmin;
+  const checkAdmin =
+    JSON.parse(localStorage.getItem("persist:root")) &&
+    JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+      ?.currentUser?.isAdmin;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [admin, setAdmin] = useState(false);
+
   const dispatch = useDispatch();
 
-  const handleClick = (e) => {
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
+
+  const handleClick = async (e) => {
     e.preventDefault();
-    login(dispatch, { username, password });
+    const res = await login(dispatch, { username, password });
+    console.log(res);
     checkAdmin && setAdmin(true);
   };
 
   return (
     <Container>
-      {admin && <Navigate to="/" replace={true} />}
+      <Navigate to="/" replace={true} />
       <Logo>BEAN.ADMIN</Logo>
       <LoginWrapper>
         <Input

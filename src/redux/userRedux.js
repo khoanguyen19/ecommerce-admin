@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { PURGE } from "redux-persist";
 
-const loginSlice = createSlice({
-  name: "login",
+const INITIAL_STATE = {
+  currentUser: null,
+  isFetching: false,
+  error: false,
+};
+
+const userSlice = createSlice({
+  name: "user",
   initialState: {
     currentUser: null,
     isFetching: false,
@@ -24,9 +31,12 @@ const loginSlice = createSlice({
       state.error = false;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, (state) => INITIAL_STATE);
+  },
 });
 
 export const { loginStart, loginSuccess, loginFailure, loginCancel } =
-  loginSlice.actions;
+  userSlice.actions;
 
-export default loginSlice.reducer;
+export default userSlice.reducer;
