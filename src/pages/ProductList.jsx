@@ -74,6 +74,7 @@ const ProductList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("here");
     getProducts(dispatch);
   }, [dispatch]);
 
